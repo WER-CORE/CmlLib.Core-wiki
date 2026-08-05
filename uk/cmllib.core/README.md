@@ -1,26 +1,26 @@
-# Home
+# Головна
 
 [GitHub](https://github.com/CmlLib/CmlLib.Core)
 
-version: 4.0.4
+версія: 4.0.4
 
-CmlLib.Core is a .NET library for building your own **Custom Minecraft launcher**.
+CmlLib.Core — це .NET-бібліотека для створення власного **кастомного лаунчера Minecraft**.
 
-## Main Features
+## Основні можливості
 
-* Download and install vanilla Minecraft version
-* Install appropriate Java runtime automatically
-* Install mod loaders (Fabric, Quilt, LiteLoader)
-* Launch all game version (tested up to 1.21.4)
-* Launch custom game version (ex: Forge, Fabric, LiteLoader, or any modified client)
-* Launch with various options (direct server connecting, screen resolutions, etc)
-* Crossplatform (Windows, Linux, macOS)
-* Highly customizable launch flow
+* Завантаження та встановлення ванільних версій Minecraft
+* Автоматичне встановлення відповідного середовища виконання Java (Java runtime)
+* Встановлення завантажувачів модів (Fabric, Quilt, LiteLoader)
+* Запуск усіх версій гри (протестовано до 1.21.4)
+* Запуск кастомних версій гри (наприклад: Forge, Fabric, LiteLoader або будь-якого модифікованого клієнта)
+* Запуск із різноманітними параметрами (пряме підключення до сервера, роздільна здатність екрана тощо)
+* Кросплатформеність (Windows, Linux, macOS)
+* Гнучка налаштовуваність процесу запуску
 
-## API Reference
+## Довідник API
 
-For accurate type information, namespace, and method signatures, refer to the [API Reference](https://cmllib.github.io/CmlLib.Core/api/toc.html). When using with LLMs, make sure to include this URL as well.
+Точну інформацію про типи, простори імен та сигнатури методів дивіться у [довіднику API](https://cmllib.github.io/CmlLib.Core/api/toc.html). При використанні з LLM переконайтеся, що ви також додали це URL-посилання.
 
 ## LLM
 
-[llms.txt](https://cmllib.github.io/CmlLib.Core-wiki/en/llms.txt) is provided.
+Надається файл [llms.txt](https://cmllib.github.io/CmlLib.Core-wiki/en/llms.txt).
