@@ -1,8 +1,8 @@
 # ForgeInstaller
 
-ForgeInstaller provides functionality to download and install Forge versions for Minecraft.
+ForgeInstaller надає функціонал для завантаження та встановлення версій Forge для Minecraft.
 
-## Initializing the Installer
+## Ініціалізація інсталятора
 
 ```csharp
 var path = new MinecraftPath();
@@ -10,60 +10,60 @@ var launcher = new MinecraftLauncher(path);
 var forgeInstaller = new ForgeInstaller(launcher);
 ```
 
-Optionally, you can configure the HttpClient used to access the Forge website by using `new ForgeInstaller(launcher, new HttpClient())`.
+За бажанням ви можете налаштувати `HttpClient`, який використовується для доступу до вебсайту Forge, за допомогою `new ForgeInstaller(launcher, new HttpClient())`.
 
-## Listing Available Versions
+## Отримання списку доступних версій
 
 ```csharp
 var versions = await forgeInstaller.GetForgeVersions("1.20.1");
 foreach (var version in versions)
 {
     Console.WriteLine();
-    Console.WriteLine("MinecraftVersion: " + version.MinecraftVersionName);
-    Console.WriteLine("ForgeVersion: " + version.ForgeVersionName);
-    Console.WriteLine("Time: " + version.Time);
-    Console.WriteLine("IsLatestVersion: " + version.IsLatestVersion);
-    Console.WriteLine("IsRecommendedVersion: " + version.IsRecommendedVersion);
+    Console.WriteLine("Версія Minecraft: " + version.MinecraftVersionName);
+    Console.WriteLine("Версія Forge: " + version.ForgeVersionName);
+    Console.WriteLine("Дата: " + version.Time);
+    Console.WriteLine("Остання версія: " + version.IsLatestVersion);
+    Console.WriteLine("Рекомендована версія: " + version.IsRecommendedVersion);
 
     var installerFile = version.GetInstallerFile();
     if (installerFile != null)
     {
-        Console.WriteLine("Type: " + installerFile.Type);
-        Console.WriteLine("DirectUrl: " + installerFile.DirectUrl);
-        Console.WriteLine("AdUrl: " + installerFile.AdUrl);
+        Console.WriteLine("Тип: " + installerFile.Type);
+        Console.WriteLine("Пряме посилання: " + installerFile.DirectUrl);
+        Console.WriteLine("Рекламне посилання: " + installerFile.AdUrl);
         Console.WriteLine("MD5: " + installerFile.MD5);
         Console.WriteLine("SHA1: " + installerFile.SHA1);
     }
 }
 ```
 
-This retrieves all available Forge versions that can be installed for the specified Minecraft version.
+Цей метод отримує всі доступні версії Forge, які можна встановити для вказаної версії Minecraft.
 
-## Installation
+## Встановлення
 
-### Installing the Best Version
+### Встановлення найоптимальнішої версії
 
 ```csharp
 var installedVersionName = await forgeInstaller.Install("1.20.1", new ForgeInstallOptions());
 ```
 
-This finds and installs the most appropriate Forge version available for Minecraft 1.20.1.
+Знаходить та встановлює найвідповіднішу версію Forge, доступну для Minecraft 1.20.1.
 
-The appropriate version is selected using the following priority rules:
+Оптимальна версія обирається за такими правилами пріоритету:
 
-1. First version with the 'Recommended Version' flag
-2. First version with the 'Latest Version' flag
-3. The topmost version in the version list
+1. Перша версія з прапорцем «Recommended Version» (Рекомендована версія)
+2. Перша версія з прапорцем «Latest Version» (Остання версія)
+3. Найперша (найвища) версія у списку версій
 
-### Installing a Specific Version
+### Встановлення конкретної версії
 
 ```csharp
 var installedVersionName = await forgeInstaller.Install("1.20.1", "47.1.0", new ForgeInstallOptions());
 ```
 
-This installs Forge version 47.1.0 for Minecraft 1.20.1.
+Встановлює версію Forge 47.1.0 для Minecraft 1.20.1.
 
-### Installing the Latest Version
+### Встановлення найновішої версії
 
 ```csharp
 var versions = await forgeInstaller.GetForgeVersions("1.20.1");
@@ -71,11 +71,11 @@ var latestVersion = versions.First(v => v.IsLatestVersion);
 var installedVersionName = await forgeInstaller.Install(latestVersion, new ForgeInstallOptions());
 ```
 
-This finds and installs the latest Forge version available for Minecraft 1.20.1.
+Знаходить та встановлює найновішу доступну версію Forge для Minecraft 1.20.1.
 
-## Installation Options
+## Параметри встановлення
 
-To use features like installation progress display and cancellation, configure the appropriate values in `ForgeInstallOptions`.
+Щоб використовувати такі можливості, як відображення прогресу встановлення та скасування, налаштуйте відповідні значення в `ForgeInstallOptions`.
 
 ```csharp
 var installOptions = new ForgeInstallOptions
@@ -94,24 +94,24 @@ var installOptions = new ForgeInstallOptions
 var installedVersionName = await forgeInstaller.Install("1.20.1", installOptions);
 ```
 
-- **FileProgress** and **ByteProgress**: Report file download progress. See [Event Handling](../cmllib.core/getting-started/Handling-Events.md) for more details.
-- **InstallerOutput**: Reports logs output from the installer's console.
-- **CancellationToken**: Allows you to cancel the installation process.
-- **JavaPath**: Sets the path to the Java runtime used to execute the installer. The default value is `null`, which automatically determines the Java runtime path.
-- **SkipIfAlreadyInstalled**: When set to `true`, skips installation if the target version is already installed. The default value is `true`.
+- **FileProgress** та **ByteProgress**: повідомляють про прогрес завантаження файлів. Див. [Обробка подій](../cmllib.core/getting-started/Handling-Events.md) для отримання детальнішої інформації.
+- **InstallerOutput**: виводить логи з консолі інсталятора.
+- **CancellationToken**: дозволяє скасувати процес встановлення.
+- **JavaPath**: задає шлях до середовища виконання Java, яке використовується для запуску інсталятора. Значення за замовчуванням — `null`, що автоматично визначає шлях до Java.
+- **SkipIfAlreadyInstalled**: якщо встановити значення `true`, процес пропускає встановлення, якщо цільова версія вже встановлена. Значення за замовчуванням — `true`.
 
-## Important Note About Complete Installation
+## Важлива примітка щодо повного встановлення
 
-`forgeInstaller.Install` does not fully install the Forge version. The version still needs additional files such as sound assets, Java runtime, and vanilla version files. Therefore, you should always call `launcher.InstallAsync` before launching the game.
+`forgeInstaller.Install` не встановлює версію Forge повністю. Для роботи версії все ще потрібні додаткові файли, такі як звукові ресурси, середовище виконання Java та файли ванільної версії. Тому ви завжди повинні викликати `launcher.InstallAsync` перед запуском гри.
 
 ```csharp
-// Install Forge
+// Встановлення Forge
 var versionName = await forgeInstaller.Install("1.20.1", new ForgeInstallOptions());
 
-// Install remaining dependencies (sound assets, Java runtime, vanilla version)
+// Встановлення решти залежностей (звуки, середовище Java, ванільна версія)
 await launcher.InstallAsync(versionName);
 
-// Launch the game
+// Запуск гри
 var process = await launcher.BuildProcessAsync(versionName, new MLaunchOption
 {
     MaximumRamMb = 1024,
@@ -120,9 +120,9 @@ var process = await launcher.BuildProcessAsync(versionName, new MLaunchOption
 process.Start();
 ```
 
-## About Ads
+## Про рекламу
 
-`ForgeInstaller` will display an ad page after a successful installation. The official Forge installer shows the following message:
+`ForgeInstaller` відкриє сторінку з рекламою після успішного встановлення. Офіційний інсталятор Forge показує таке повідомлення:
 
 ```
 Please do not automate the download and installation of Forge.
@@ -130,9 +130,9 @@ Our efforts are supported by ads from the download page.
 If you MUST automate this, please consider supporting the project through https://www.patreon.com/LexManos
 ```
 
-If you want to disable this behavior, you can modify the [ForgeInstaller source code](https://github.com/CmlLib/CmlLib.Core.Installer.Forge/blob/main/CmlLib.Core.Installer.Forge/ForgeInstaller.cs) yourself.
+Якщо ви хочете вимкнути цю поведінку, ви можете самостійно змінити [вихідний код ForgeInstaller](https://github.com/CmlLib/CmlLib.Core.Installer.Forge/blob/main/CmlLib.Core.Installer.Forge/ForgeInstaller.cs).
 
-## API Reference
+## Довідник API
 
 - [ForgeInstaller](https://cmllib.github.io/CmlLib.Core.Installer.Forge/api/CmlLib.Core.Installer.Forge.ForgeInstaller.html)
 - [ForgeInstallOptions](https://cmllib.github.io/CmlLib.Core.Installer.Forge/api/CmlLib.Core.Installer.Forge.ForgeInstallOptions.html)
