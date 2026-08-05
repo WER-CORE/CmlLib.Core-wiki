@@ -1,20 +1,20 @@
-# Home
+# Головна
 
 [GitHub](https://github.com/CmlLib/CmlLib.Core.Installer.Forge)
 
-Forge Installer for [CmlLib.Core](../cmllib.core/README.md).
+Інсталятор Forge для [CmlLib.Core](../cmllib.core/README.md).
 
-## Features
+## Можливості
 
-* Forge Developer Support! After successfully installing the Forge version, the Forge advertising page will automatically open for you.
-* Automatic change of links to install Forge
-* Automatic installation of the Vanilla version of Minecraft before installing Forge
-* Skipping the Forge re-installation
+* Підтримка розробників Forge! Після успішного встановлення версії Forge у вас автоматично відкриється рекламна сторінка Forge.
+* Автоматична зміна посилань для встановлення Forge
+* Автоматичне встановлення ванільної версії Minecraft перед встановленням Forge
+* Пропуск повторного встановлення Forge
 
-## API Reference
+## Довідник API
 
-For accurate type information, namespace, and method signatures, refer to the [API Reference](https://cmllib.github.io/CmlLib.Core.Installer.Forge/api/toc.html). When using with LLMs, make sure to include this URL as well.
+Для отримання точної інформації про типи, простори імен та сигнатури методів зверніться до [Довідника API](https://cmllib.github.io/CmlLib.Core.Installer.Forge/api/toc.html). У разі використання з LLM обов'язково додайте й цю URL-адресу.
 
 ## LLM
 
-[llms.txt](https://cmllib.github.io/CmlLib.Core-wiki/en/llms.txt) is provided.
+Надано файл [llms.txt](https://cmllib.github.io/CmlLib.Core-wiki/en/llms.txt).
