@@ -1,25 +1,25 @@
-# 🧊 CmlLib Projects
+# 🧊 Проєкти CmlLib
 
-CmlLib project develops various .NET libraries for building custom Minecraft launchers.
+Проєкт CmlLib розробляє різні бібліотеки .NET для створення кастомних лаунчерів Minecraft.
 
 ## [CmlLib.Core](cmllib.core/README.md)
 
-Core library containing most launcher functionality:
+Основна бібліотека, яка містить більшість функціоналу лаунчера:
 
-- Install and launch Minecraft
-- Supports **all vanilla** versions
-- Supports any modified client including Forge, NeoForge, Fabric, Quilt, etc.
+- Встановлення та запуск Minecraft
+- Підтримка **усіх ванільних** версій
+- Підтримка будь-якого модифікованого клієнта, включаючи Forge, NeoForge, Fabric, Quilt тощо.
 
 ## [Auth.Microsoft](auth.microsoft/README.md)
 
-Microsoft account authentication for Minecraft accounts
+Авторизація через обліковий запис Microsoft для акаунтів Minecraft
 
 ## [MojangAPI](mojangapi/README.md)
 
-- Getting player profile, skin, cape, etc.
-- Changing username or skin
-- And more...
+- Отримання профілю гравця, скіна, плаща тощо.
+- Зміна нікнейму або скіна
+- Та багато іншого...
 
 ## [Installer.Forge](installer.forge/README.md)
 
-Automatic Forge Mod Loader Installer
+Автоматичний інсталятор завантажувача модів Forge
