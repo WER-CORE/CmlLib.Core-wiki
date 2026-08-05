@@ -1,12 +1,12 @@
-# SecurityQuestion
+# Контрольні запитання (SecurityQuestion)
 
-This is required to get the skin change endpoint to work in case the services do not trust your IP yet.
+Це необхідно для того, щоб ендпоінт зміни скіна працював у випадках, коли сервіси ще не довіряють вашій IP-адресі.
 
-Most methods return `MojangAPIResponse` or class inherited from `MojangAPIResponse`.  
-You can check whether the request was successful or failed to check `IsSuccess` property in `MojangAPIResponse`.  
-If `IsSuccess` is false, `Error` and `ErrorMessage` property tell you why the request failed.
+Більшість методів повертають `MojangAPIResponse` або клас, успадкований від `MojangAPIResponse`.  
+Ви можете перевірити успішність виконання запиту за допомогою властивості `IsSuccess` у `MojangAPIResponse`.  
+Якщо `IsSuccess` має значення `false`, властивості `Error` та `ErrorMessage` вкажуть на причину помилки.
 
-Example:
+Приклад:
 
 ```csharp
 using MojangAPI.SecurityQuestion;
@@ -17,7 +17,7 @@ QuestionFlow questionFlow = new QuestionFlow(httpClient);
 try
 {
     await questionFlow.CheckTrusted("accessToken");
-    Console.WriteLine("Your IP was trusted");
+    Console.WriteLine("Вашу IP-адресу підтверджено");
 }
 catch
 {
@@ -26,7 +26,7 @@ catch
     {
         Question question = questions[i];
         Console.WriteLine($"Q{i + 1}. [{question.QuestionId}] {question.QuestionMessage}");
-        Console.Write("Answer? : ");
+        Console.Write("Відповідь? : ");
 
         var answer = Console.ReadLine();
         question.Answer = answer;
@@ -34,25 +34,25 @@ catch
     }
 
     await questionFlow.SendAnswers(questions, session.AccessToken);
-    Console.WriteLine("Success");
+    Console.WriteLine("Успішно");
 }
 ```
 
-## Methods (QuestionFlow class)
+## Методи (клас QuestionFlow)
 
 ### CheckTrusted
 
-Check if security questions are needed.
+Перевіряє, чи потрібні запитання безпеки.
 
 ```csharp
 try
 {
     await questionFlow.CheckTrusted("accessToken");
-    // trusted
+    // IP підтверджено (запитання безпеки не потрібні)
 }
 catch 
 {
-    // security questions are needed
+    // потрібні запитання безпеки
 }
 ```
 
@@ -72,6 +72,6 @@ foreach (Question q in questionList)
 ### SendAnswers
 
 ```csharp
-QuestionList list; // you can get this from GetQuestionsList method, like 'questionList' variable above.
+QuestionList list; // цей список можна отримати з методу GetQuestionList, як змінну 'questionList' вище.
 await questionFlow.SendAnswers(list, "accessToken");
 ```
