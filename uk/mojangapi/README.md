@@ -1,50 +1,52 @@
-# Home
+# Головна
 
 ![Discord](https://img.shields.io/discord/795952027443527690?label=discord&logo=discord&style=for-the-badge)
 
 [GitHub](https://github.com/CmlLib/MojangAPI)
 
-.NET Library for [Mojang API](https://wiki.vg/Mojang_API), [Mojang Authentication](https://wiki.vg/Authentication) and [Microsoft Xbox Authentication](https://wiki.vg/Microsoft_Authentication_Scheme)
+.NET бібліотека для [Mojang API](https://wiki.vg/Mojang_API), [Mojang Authentication](https://wiki.vg/Authentication) та [Microsoft Xbox Authentication](https://wiki.vg/Microsoft_Authentication_Scheme)
 
-* Asynchronous API
-* Getting Player Data
-* Changing Player Name or Skin
-* Mojang Authentication
-* Microsoft Authentication
-* Security Question-Answer
-* Statistics
+* Асинхронний API
+* Отримання даних гравця
+* Зміна нікнейму або скіна гравця
+* Автентифікація Mojang
+* Автентифікація Microsoft
+* Відповіді на контрольні запитання (Security Question)
+* Статистика
 
-Support:
+Підтримка:
 
 * netstandard 2.0
 
-## Install
+## Встановлення
 
-Use Nuget package [MojangAPI](https://www.nuget.org/packages/MojangAPI)
+Використовуйте NuGet-пакет [MojangAPI](https://www.nuget.org/packages/MojangAPI)
+
 
 ```
 dotnet add package MojangAPI
 ```
 
-## Usage
+## Використання
 
-Include these namespaces :
+Підключіть ці простори імен:
 
 ```csharp
 using MojangAPI;
 using MojangAPI.Model;
+
 ```
 
-Sample program: [MojangAPISample](https://github.com/CmlLib/MojangAPI/tree/master/MojangAPISample)
+Приклад програми: [MojangAPISample](https://github.com/CmlLib/MojangAPI/tree/master/MojangAPISample)
 
 ### [Mojang API](mojang-api.md)
 
-Getting player profile, Changing name or skin, Statistics, Blocked Server, Checking Game Ownership
+Отримання профілю гравця, зміна нікнейму або скіна, статистика, заблоковані сервери, перевірка наявності придбаної гри.
 
-### [SecurityQuestion](securityquestion.md)
+### [Контрольні запитання (SecurityQuestion)](securityquestion.md)
 
-Security question-answer flow
+Процес відповідей на контрольні запитання.
 
-### Authentication
+### Автентифікація
 
-For authentication, See [Login and Sessions](../cmllib.core/login-and-sessions/README.md) or use library [CmlLib.Core.Auth.Microsoft](../auth.microsoft/cmllib.core.auth.microsoft/README.md).
+Для автентифікації перегляньте розділ [Вхід та сесії](../cmllib.core/login-and-sessions/README.md) або використовуйте бібліотеку [CmlLib.Core.Auth.Microsoft](../auth.microsoft/cmllib.core.auth.microsoft/README.md).
