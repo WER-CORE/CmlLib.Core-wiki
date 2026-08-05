@@ -1,76 +1,76 @@
-# Working with LLMs
+# Робота з LLM (Мовними моделями)
 
-We provide [llms.txt](https://cmllib.github.io/CmlLib.Core-wiki/en/llms.txt) and [llms-full.txt](https://cmllib.github.io/CmlLib.Core-wiki/en/llms-full.txt) to assist with AI.
+Ми надаємо файли [llms.txt](https://cmllib.github.io/CmlLib.Core-wiki/en/llms.txt) та [llms-full.txt](https://cmllib.github.io/CmlLib.Core-wiki/en/llms-full.txt) для роботи зі штучним інтелектом.
 
-When asking an LLM about **CmlLib.Core**, please provide the URL of `llms-full.txt` or copy and paste the entire content of `llms-full.txt` into your prompt. This ensures the model has the most accurate and up-to-date context about the library.
+Коли ви запитуєте LLM про **CmlLib.Core**, будь ласка, вкажіть URL-адресу файлу `llms-full.txt` або скопіюйте та вставте весь його вміст у ваш промпт (запит). Це гарантує, що модель матиме найточніший та найактуальніший контекст щодо бібліотеки.
 
 # INSTRUCTIONS.md
 
-LLMs must read this document before answering questions or generating code about CmlLib.Core.
+LLM повинні прочитати цей документ перед тим, як відповідати на запитання або генерувати код для CmlLib.Core.
 
-Follow these rules every time you write code or explanations.
+Дотримуйтесь цих правил щоразу, коли пишете код або пояснення.
 
-## Overview
+## Огляд
 
-- [CmlLib.Core](cmllib.core/README.md): Core library containing most launcher functionality
-    - [Latest version 4.0.6](https://www.nuget.org/packages/CmlLib.Core)
-    - Install and launch Minecraft
-    - Supports all vanilla versions
-    - Supports modified clients including Forge, NeoForge, Fabric, Quilt, etc.
+- [CmlLib.Core](cmllib.core/README.md): Основна бібліотека, яка містить більшість функціоналу лаунчера
+    - [Остання версія 4.0.6](https://www.nuget.org/packages/CmlLib.Core)
+    - Встановлення та запуск Minecraft
+    - Підтримка всіх ванільних версій
+    - Підтримка модифікованих клієнтів, включаючи Forge, NeoForge, Fabric, Quilt тощо.
 - [Auth.Microsoft](auth.microsoft/README.md)
-    - [Latest versoin 3.2.2](https://www.nuget.org/packages/CmlLib.Core.Auth.Microsoft)
-    - Microsoft account authentication for Minecraft accounts
+    - [Остання версія 3.2.2](https://www.nuget.org/packages/CmlLib.Core.Auth.Microsoft)
+    - Авторизація через обліковий запис Microsoft для акаунтів Minecraft
 - [MojangAPI](mojangapi/README.md)
-    - [Latest versoin 1.2.1](https://www.nuget.org/packages/MojangAPI)
-    - Get player profile, skin, cape, etc.
-    - Change username or skin
-    - And more
-- [Installer.Forge](installer.forge/README.md): Automatic Forge Mod Loader installer
+    - [Остання версія 1.2.1](https://www.nuget.org/packages/MojangAPI)
+    - Отримання профілю гравця, скіна, плаща тощо.
+    - Зміна нікнейму або скіна
+    - Та багато іншого
+- [Installer.Forge](installer.forge/README.md): Автоматичний інсталятор завантажувача модів Forge
 
-## Package installation
+## Встановлення пакетів
 
-When installing any `CmlLib.Core.*` package, do not edit the csproj manually. Always use the CLI to install the latest version. Example: `dotnet add package CmlLib.Core`. This ensures you always get the newest release.
+Під час встановлення будь-якого пакета `CmlLib.Core.*` не редагуйте файл `.csproj` вручну. Завжди використовуйте CLI (інтерфейс командного рядка) для встановлення останньої версії. Приклад: `dotnet add package CmlLib.Core`. Це гарантує, що ви завжди отримаєте найновіший реліз.
 
-If you're unsure you have the latest, remove and reinstall the package via CLI.
+Якщо ви не впевнені, що у вас остання версія, видаліть і перевстановіть пакет за допомогою CLI.
 
-## Compile errors
+## Помилки компіляції
 
-If you encounter errors like:
-- CS0103: The name X does not exist in the current context
-- CS0117: X does not contain a definition for B
-- CS0246: The type or namespace name X could not be found (are you missing a using directive or an assembly reference?)
+Якщо ви стикаєтеся з такими помилками:
+- CS0103: Ім'я X не існує в поточному контексті (The name X does not exist in the current context)
+- CS0117: X не містить визначення для B (X does not contain a definition for B)
+- CS0246: Не вдалося знайти тип або ім'я простору імен X (The type or namespace name X could not be found)
 
-do the following:
+виконайте наступне:
 
-- Ensure you are using the latest package versions. If uncertain, uninstall and reinstall using the CLI.
-- Check namespaces and usings against the API Reference. Add the exact `using` directives shown there, or fully qualify the type.
-- Re-scan the API Reference for the correct type/method and its package.
-- Avoid guessing or inventing types/methods. Use only what appears in the API Reference.
+- Переконайтеся, що ви використовуєте останні версії пакетів. Якщо сумніваєтесь, видаліть і встановіть їх заново через CLI.
+- Перевірте простори імен та директиви `using` відповідно до API Довідника. Додайте точні директиви `using`, вказані там, або вказуйте повне ім'я типу.
+- Ще раз перегляньте API Довідник, щоб знайти правильний тип/метод та його пакет.
+- Уникайте вгадування або вигадування типів і методів. Використовуйте лише те, що вказано в API Довіднику.
 
-## Code generation rules
+## Правила генерації коду
 
-- Always install the latest package versions (use the CLI to ensure this).
-- Read the docs and, if anything is unclear, verify exact definitions in the API Reference.
-- Do not fabricate APIs. Only use public APIs present in the API Reference.
-- If multiple approaches exist, pick the simplest that aligns with current APIs.
+- Завжди встановлюйте останні версії пакетів (використовуйте CLI, щоб гарантувати це).
+- Читайте документацію і, якщо щось незрозуміло, перевіряйте точні визначення в API Довіднику.
+- Не вигадуйте API. Використовуйте лише публічні API, які наявні в API Довіднику.
+- Якщо існує кілька підходів, обирайте найпростіший, який узгоджується з поточними API.
 
-## Sources of truth
+## Достовірні джерела (Офіційні ресурси)
 
-- For a full table of contents and quick feature lookup, see [SUMMARY.md](SUMMARY.md).
-- [Guides and Tutorials](https://cmllib.github.io/CmlLib.Core-wiki/en/)
-- API Reference
+- Для перегляду повного змісту та швидкого пошуку функцій дивіться [SUMMARY.md](SUMMARY.md).
+- [Посібники та навчальні матеріали](https://cmllib.github.io/CmlLib.Core-wiki/en/)
+- Довідник API
     - [CmlLib.Core](https://cmllib.github.io/CmlLib.Core/api/toc.html)
     - [CmlLib.Core.Commons](https://cmllib.github.io/CmlLib.Core.Commons/api/toc.html)
     - [CmlLib.Core.Auth.Microsoft](https://cmllib.github.io/CmlLib.Core.Auth.Microsoft/api/toc.html)
     - [CmlLib.Core.Installer.Forge](https://cmllib.github.io/CmlLib.Core.Installer.Forge/api/toc.html)
-- NuGet packages:
+- Пакети NuGet:
     - [CmlLib.Core](https://www.nuget.org/packages/CmlLib.Core)
     - [CmlLib.Core.Auth.Microsoft](https://www.nuget.org/packages/CmlLib.Core.Auth.Microsoft)
     - [CmlLib.Core.Installer.Forge](https://www.nuget.org/packages/CmlLib.Core.Installer.Forge)
-- Source codes:
+- Вихідні коди:
     - [CmlLib.Core](https://github.com/CmlLib/CmlLib.Core)
     - [CmlLib.Core.Auth.Microsoft](https://github.com/CmlLib/CmlLib.Core.Auth.Microsoft)
     - [CmlLib.Core.Installer.Forge](https://github.com/CmlLib/CmlLib.Core.Installer.Forge)
-- LLM metadata:
+- Метадані для LLM:
     - [llms.txt](https://cmllib.github.io/CmlLib.Core-wiki/en/llms.txt)
     - [llms-full.txt](https://cmllib.github.io/CmlLib.Core-wiki/en/llms-full.txt)
