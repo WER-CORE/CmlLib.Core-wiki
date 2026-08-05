@@ -1,10 +1,10 @@
 # Mojang API
 
-If the request is failed, it throws appropriate exception. For example, `MojangException` is thrown when the mojang server returns error message.
+Якщо запит провалюється, генерується відповідна помилка (exception). Наприклад, MojangException генерується, коли сервер Mojang повертає повідомлення про помилку.
 
-## How to get `AccessToken` or `UUID`?
+## Як отримати `AccessToken` або `UUID`?
 
-You can get these token by Mojang Authentication or Microsoft Xbox Authentication. See [Login and Sessions](../cmllib.core/login-and-sessions/README.md).
+Ви можете отримати ці токени за допомогою автентифікації Mojang або Microsoft Xbox. Див. [Вхід та сесії](../cmllib.core/login-and-sessions/README.md).
 
 ```csharp
 var session = await loginHandler.Authenticate();
@@ -12,11 +12,11 @@ var username = session.Username;
 var uuid = session.UUID;
 ```
 
-## Methods
+## Методи
 
 ### GetUUID
 
-username -> uuid
+нікнейм -> uuid
 
 ```csharp
 Mojang mojang = new Mojang(new HttpClient());
@@ -29,7 +29,7 @@ PlayerUUID uuid = await mojang.GetUUID("username");
 
 ### GetUUIDs
 
-usernames -> uuids
+нікнейми -> uuids
 
 ```csharp
 Mojang mojang = new Mojang(new HttpClient());
@@ -43,7 +43,7 @@ foreach (PlayerUUID uuid in uuids)
 
 ### GetNameHistories
 
-_note: this api has been deprecated by Mojang_
+_примітка: це API було визнано застарілим (deprecated) розробниками Mojang_
 
 ```csharp
 Mojang mojang = new Mojang(new HttpClient());
@@ -71,7 +71,7 @@ PlayerProfile profile = await mojang.GetProfileUsingUUID("uuid");
 
 ### GetProfileUsingAccessToken
 
-_note: this api only works on xbox account_
+_примітка: це API працює лише для акаунтів Xbox_
 
 ```csharp
 Mojang mojang = new Mojang(new HttpClient());
@@ -80,7 +80,7 @@ PlayerProfile profile = await mojang.GetProfileUsingAccessToken("accessToken");
 
 ### GetPlayerAttributes
 
-_note: this api only works on xbox account_
+_примітка: це API працює лише для акаунтів Xbox_
 
 ```csharp
 Mojang mojang = new Mojang(new HttpClient());
@@ -95,7 +95,7 @@ PlayerAttributes attributes = await mojang.GetPlayerAttributes("accessToken");
 
 ### GetPlayerBlocklist
 
-_note: this api only works on xbox account_
+_примітка: це API працює лише для акаунтів Xbox_
 
 ```csharp
 Mojang mojang = new Mojang(new HttpClient());
@@ -104,7 +104,7 @@ string[] blocklists = await mojang.GetPlayerBlocklist("accessToken");
 
 ### GetPlayerCertificates
 
-_note: this api only works on xbox account_
+_примітка: це API працює лише для акаунтів Xbox_
 
 ```csharp
 Mojang mojang = new Mojang(new HttpClient());
@@ -126,7 +126,7 @@ string? result = await mojang.CheckNameAvailability("accessToken", "newName");
 
 ### ChangeName
 
-_note: this api only works on xbox account_
+_примітка: це API працює лише для акаунтів Xbox_
 
 ```csharp
 Mojang mojang = new Mojang(new HttpClient());
@@ -135,35 +135,35 @@ PlayerProfile profile = await mojang.ChangeName("accessToken", "newName");
 
 ### ChangeSkin
 
-_note: this api only works on xbox account_
+_примітка: це API працює лише для акаунтів Xbox_
 
 ```csharp
 Mojang mojang = new Mojang(new HttpClient());
 
-// SkinType.Steve or SkinType.Alex
+// SkinType.Steve або SkinType.Alex
 PlayerProfile response = await mojang.ChangeSkin("uuid", "accessToken", SkinType.Steve, "skinUrl");
 ```
 
 ### UploadSkin
 
-_note: this api only works on xbox account_
+_примітка: це API працює лише для акаунтів Xbox_
 
 ```csharp
 Mojang mojang = new Mojang(new HttpClient());
 
-// SkinType.Steve or SkinType.Alex
+// SkinType.Steve або SkinType.Alex
 await mojang.UploadSkin("accessToken", SkinType.Steve, "skin_png_file_path");
 ```
 
 ```csharp
 Mojang mojang = new Mojang(new HttpClient());
-Stream stream; // create stream for uploading skin
+Stream stream; // створення потоку (stream) для завантаження скіна
 await mojang.UploadSkin("accessToken", SkinType.Steve, stream, "file_name");
 ```
 
 ### ResetSkin
 
-_note: this api only works on xbox account_
+_примітка: це API працює лише для акаунтів Xbox_
 
 ```csharp
 Mojang mojang = new Mojang(new HttpClient());
@@ -179,7 +179,7 @@ string[] servers = await mojang.GetBlockedServer();
 
 ### GetStatistics
 
-_note: this api was obsoleted by mojang_
+_примітка: це API було видалено з підтримки Mojang_
 
 ```csharp
 Mojang mojang = new Mojang(new HttpClient());
@@ -195,15 +195,15 @@ Statistics stats = await mojang.GetStatistics(
 
 ### CheckGameOwnership
 
-_note1: this api only works on xbox account_  
-_note2: this api does not check xbox game pass. if the user has xbox game pass instead of purchase minecraft, this api return `false`. but the user owns minecraft and can play it._
+_примітка 1: це API працює лише для акаунтів Xbox_  
+_примітка 2: це API не перевіряє наявність підписки Xbox Game Pass. Якщо користувач має підписку Xbox Game Pass замість придбаної гри Minecraft, це API поверне `false`, хоча користувач має доступ до Minecraft і може в нього грати._
 
 ```csharp
 Mojang mojang = new Mojang(new HttpClient());
 bool result = await mojang.CheckGameOwnership("accessToken");
 
 if (result)
-    Console.WriteLine("You have Minecraft JE");
+    Console.WriteLine("У вас є Minecraft JE");
 else
-    Console.WriteLine("You don't have Minecraft JE");
+    Console.WriteLine("У вас немає Minecraft JE");
 ```
