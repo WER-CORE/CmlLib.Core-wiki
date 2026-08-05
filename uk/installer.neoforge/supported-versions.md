@@ -1,13 +1,13 @@
-# Supported Versions
+# Підтримувані версії
 
-This library supports NeoForge installations starting from version 1.20.2.
-All versions up to 1.21.10 have been fully tested and confirmed to work without issues.
-Versions after 1.21.10 are also supported — they have not been tested yet, but are expected to work normally.
-If you encounter any problems, please open an issue.
+Ця бібліотека підтримує встановлення NeoForge починаючи з версії 1.20.2.
+Усі версії до 1.21.10 включно були повністю протестовані, і їхню стабільну роботу підтверджено.
+Версії після 1.21.10 також підтримуються — вони ще не були протестовані, але очікується, що вони працюватимуть у штатному режимі.
+Якщо ви зіткнетеся з будь-якими проблемами, будь ласка, створіть issue на GitHub.
 
-## Summary
+## Анотація 
 
-| Range                           | Summary                                |
-|---------------------------------|----------------------------------------|
-| 1.20.2 ~ 1.21.10                | ✅ SUPPORT, tested                      |
-| after 1.21.10 ~ future versions | ✅ SUPPORT, not tested, but should work |
+| Діапазон | Статус |
+|---|---|
+| 1.20.2 ~ 1.21.10 | ✅ ПІДТРИМУЄТЬСЯ, протестовано |
+| після 1.21.10 ~ майбутні версії | ✅ ПІДТРИМУЄТЬСЯ, не протестовано, але має працювати |
