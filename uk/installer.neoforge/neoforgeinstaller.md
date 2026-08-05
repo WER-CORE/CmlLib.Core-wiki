@@ -1,8 +1,8 @@
 # NeoForgeInstaller
 
-NeoForgeInstaller provides functionality to download and install NeoForge versions for Minecraft.
+NeoForgeInstaller надає функціонал для завантаження та встановлення версій NeoForge для Minecraft.
 
-## Initializing the Installer
+## Ініціалізація інсталятора
 
 ```csharp
 var path = new MinecraftPath();
@@ -10,53 +10,53 @@ var launcher = new MinecraftLauncher(path);
 var neoForgeInstaller = new NeoForgeInstaller(launcher);
 ```
 
-Optionally, you can configure the HttpClient used to access the NeoForge website by using `new NeoForgeInstaller(launcher, new HttpClient())`.
+За бажанням ви можете налаштувати `HttpClient`, який використовується для доступу до вебсайту NeoForge, за допомогою `new NeoForgeInstaller(launcher, new HttpClient())`.
 
-## Listing Available Versions
+## Отримання списку доступних версій
 
 ```csharp
 var versions = await neoForgeInstaller.GetForgeVersions("1.21.10");
 foreach (var version in versions)
 {
     Console.WriteLine();
-    Console.WriteLine("MinecraftVersion: " + version.MinecraftVersion);
-    Console.WriteLine("VersionName: " + version.VersionName);
+    Console.WriteLine("Версія Minecraft: " + version.MinecraftVersion);
+    Console.WriteLine("Версія NeoForge: " + version.VersionName);
 
     var installerFile = version.GetInstallerFile();
     if (installerFile != null)
     {
-        Console.WriteLine("DirectUrl: " + installerFile.DirectUrl);
+        Console.WriteLine("Пряме посилання:" + installerFile.DirectUrl);
     }
 }
 ```
 
-This retrieves all available NeoForge versions that can be installed for the specified Minecraft version.
+Цей метод отримує всі доступні версії NeoForge, які можна встановити для вказаної версії Minecraft.
 
-## Installation
+## Встановлення
 
-### Installing the Best Version
+### Встановлення найоптимальнішої версії
 
 ```csharp
 var installedVersionName = await neoForgeInstaller.Install("1.21.10", new NeoForgeInstallOptions());
 ```
 
-This finds and installs the most appropriate NeoForge version available for Minecraft 1.21.10.
+Знаходить та встановлює найвідповіднішу версію NeoForge, доступну для Minecraft 1.21.10.
 
-The appropriate version is selected using the following priority rules:
+Оптимальна версія обирається за такими правилами пріоритету:
 
-1. First version with the 'Recommended Version' flag
-2. First version with the 'Latest Version' flag
-3. The topmost version in the version list
+1. Перша версія з прапорцем «Recommended Version» (Рекомендована версія)
+2. Перша версія з прапорцем «Latest Version» (Остання версія)
+3. Найперша (найвища) версія у списку версій
 
-### Installing a Specific Version
+### Встановлення конкретної версії
 
 ```csharp
 var installedVersionName = await neoForgeInstaller.Install("1.21.10", "21.10.56-beta", new NeoForgeInstallOptions());
 ```
 
-This installs NeoForge version 21.10.56-beta for Minecraft 1.21.10.
+Встановлює версію NeoForge 21.10.56-beta для Minecraft 1.21.10.
 
-### Installing the Latest Version
+### Встановлення найновішої версії
 
 ```csharp
 var versions = await neoForgeInstaller.GetForgeVersions("1.21.10");
@@ -64,11 +64,11 @@ var latestVersion = versions.First();
 var installedVersionName = await neoForgeInstaller.Install(latestVersion, new NeoForgeInstallOptions());
 ```
 
-This finds and installs the latest NeoForge version available for Minecraft 1.21.10.
+Знаходить та встановлює найновішу доступну версію NeoForge для Minecraft 1.21.10.
 
-## Installation Options
+## Параметри встановлення
 
-To use features like installation progress display and cancellation, configure the appropriate values in `NeoForgeInstallOptions`.
+Щоб використовувати такі можливості, як відображення прогресу встановлення та скасування, налаштуйте відповідні значення в `NeoForgeInstallOptions`.
 
 ```csharp
 var installOptions = new NeoForgeInstallOptions
@@ -87,24 +87,24 @@ var installOptions = new NeoForgeInstallOptions
 var installedVersionName = await neoForgeInstaller.Install("1.21.10", installOptions);
 ```
 
-- **FileProgress** and **ByteProgress**: Report file download progress. See [Event Handling](../cmllib.core/getting-started/Handling-Events.md) for more details.
-- **InstallerOutput**: Reports logs output from the installer's console.
-- **CancellationToken**: Allows you to cancel the installation process.
-- **JavaPath**: Sets the path to the Java runtime used to execute the installer. The default value is `null`, which automatically determines the Java runtime path.
-- **SkipIfAlreadyInstalled**: When set to `true`, skips installation if the target version is already installed. The default value is `true`.
+- **FileProgress** та **ByteProgress**: повідомляють про прогрес завантаження файлів. Див. [Обробка подій](../cmllib.core/getting-started/Handling-Events.md) для отримання детальнішої інформації.
+- **InstallerOutput**: виводить логи з консолі інсталятора.
+- **CancellationToken**: дозволяє скасувати процес встановлення.
+- **JavaPath**: задає шлях до середовища виконання Java, яке використовується для запуску інсталятора. Значення за замовчуванням — `null`, що автоматично визначає шлях до Java.
+- **SkipIfAlreadyInstalled**: якщо встановити значення `true`, процес пропускає встановлення, якщо цільова версія вже встановлена. Значення за замовчуванням — `true`.
 
-## Important Note About Complete Installation
+## Важлива примітка щодо повного встановлення
 
-`neoForgeInstaller.Install` does not fully install the NeoForge version. The version still needs additional files such as sound assets, Java runtime, and vanilla version files. Therefore, you should always call `launcher.InstallAsync` before launching the game.
+`neoForgeInstaller.Install` не встановлює версію NeoForge повністю. Для роботи версії все ще потрібні додаткові файли, такі як звукові ресурси, середовище виконання Java та файли ванільної версії. Тому ви завжди повинні викликати `launcher.InstallAsync` перед запуском гри.
 
 ```csharp
-// Install NeoForge
+// Встановлення NeoForge
 var versionName = await neoForgeInstaller.Install("1.21.10", new NeoForgeInstallOptions());
 
-// Install remaining dependencies (sound assets, Java runtime, vanilla version)
+// Встановлення решти залежностей (звуки, середовище Java, ванільна версія)
 await launcher.InstallAsync(versionName);
 
-// Launch the game
+// Запуск гри
 var process = await launcher.BuildProcessAsync(versionName, new MLaunchOption
 {
     MaximumRamMb = 1024,
