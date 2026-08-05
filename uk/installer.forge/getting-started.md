@@ -1,14 +1,14 @@
-# Getting Started
+# Перші кроки
 
-## Install
+## Встановлення
 
-Install nuget package [CmlLib.Core.Installer.Forge](https://www.nuget.org/packages/CmlLib.Core.Installer.Forge)
+Встановіть NuGet-пакет [CmlLib.Core.Installer.Forge](https://www.nuget.org/packages/CmlLib.Core.Installer.Forge)
 
 ```
 dotnet add package CmlLib.Core.Installer.Forge
 ```
 
-## Example
+## Приклад
 
 ```csharp
 using CmlLib.Core;
@@ -17,7 +17,7 @@ using CmlLib.Core.Installer.Forge;
 using CmlLib.Core.Installers;
 using CmlLib.Core.ProcessBuilder;
 
-var path = new MinecraftPath(); // use default directory
+var path = new MinecraftPath(); // використання директорії за замовчуванням
 var launcher = new MinecraftLauncher(path);
 var forgeInstaller = new ForgeInstaller(launcher);
 
@@ -26,8 +26,8 @@ var fileProgress = new Progress<InstallerProgressChangedEventArgs>(e =>
 var byteProgress = new Progress<ByteProgress>(e =>
         Console.WriteLine(e.ToRatio() * 100 + "%"));
 
-// install forge
-// show launch progress to console
+// встановлення forge
+// вивід прогресу в консоль
 var versionName = await forgeInstaller.Install("1.20.1", new ForgeInstallOptions
 {
     FileProgress = fileProgress,
@@ -36,7 +36,7 @@ var versionName = await forgeInstaller.Install("1.20.1", new ForgeInstallOptions
         Console.WriteLine(e)),
 });
 
-// ForgeInstaller does not fully install the version, you still need to call InstallAsync
+// ForgeInstaller не встановлює версію повністю, вам все одно потрібно викликати InstallAsync
 await launcher.InstallAsync(versionName, fileProgress, byteProgress);
 var process = await launcher.BuildProcessAsync(versionName, new MLaunchOption
 {
@@ -44,18 +44,18 @@ var process = await launcher.BuildProcessAsync(versionName, new MLaunchOption
     Session = MSession.CreateOfflineSession("Gamer123"),
 });
 
-// print game logs
+// вивід логів гри
 var processUtil = new ProcessWrapper(process);
 processUtil.OutputReceived += (s, e) => Console.WriteLine(e);
 processUtil.StartWithEvents();
 await processUtil.WaitForExitTaskAsync();
 ```
 
-## Sample Installer
+## Приклад інсталятора
 
 [SampleForgeInstaller](https://github.com/CmlLib/CmlLib.Core.Installer.Forge/blob/main/SampleForgeInstaller/Program.cs)
 
-## API Reference
+## Довідник API
 
 - [ForgeInstaller](https://cmllib.github.io/CmlLib.Core.Installer.Forge/api/CmlLib.Core.Installer.Forge.ForgeInstaller.html)
 - [ForgeInstallOptions](https://cmllib.github.io/CmlLib.Core.Installer.Forge/api/CmlLib.Core.Installer.Forge.ForgeInstallOptions.html)
