@@ -1,23 +1,23 @@
 # MArgument
 
-Various parameters set in the launcher (user information, game directory path, server address, etc.) are passed as an argument list when the game process is executed. The operating system passes this list to the process, separated by spaces.
+Різні параметри, налаштовані в лаунчері (інформація про користувача, шлях до директорії гри, адреса сервера тощо), передаються як список аргументів під час запуску процесу гри. Операційна система передає цей список процесу, розділяючи елементи пробілами.
 
-Each argument string can have the following characteristics:
+Кожен рядок аргументу може мати такі особливості:
 
-* It can have a key and value separated by `=` like `-key=value`, or a single value like `value`.
-* It can contain `${template}` format that the launcher will replace with appropriate values, like `--key=${template}`.
-* If `value` contains spaces, it is enclosed in quotes. (e.g., `--key="hello world"`, `"this value"`)
+* Він може мати ключ і значення, розділені знаком `=`, наприклад `-key=value`, або лише одне значення, наприклад `value`.
+* Він може містити формат `${template}`, який лаунчер замінить відповідними значеннями, наприклад `--key=${template}`.
+* Якщо `value` містить пробіли, воно береться в лапки (наприклад, `--key="hello world"`, `"this value"`).
 
-!!! info "Argument Separation"
-    Arguments are basically separated by spaces, but spaces enclosed in quotes do not separate arguments.
+!!! info "Розділення аргументів"
+    Аргументи зазвичай розділяються пробілами, але пробіли всередині лапок не розділяють аргументи.
 
-    * `--username ${auth_player_name}`: These are **two arguments**: `--username` and `${auth_player_name}`.
-    * `-Dminecraft.launcher.brand="hello world"`: This is **one argument** even though it contains spaces, because it's enclosed in quotes.
+    * `--username ${auth_player_name}`: це **два аргументи**: `--username` та `${auth_player_name}`.
+    * `-Dminecraft.launcher.brand="hello world"`: це **один аргумент**, хоча він і містить пробіли, оскільки береться в лапки.
 
-`MArgument` is a type that manages a list of such arguments. When initializing `MArgument`, each element must contain **only one argument**.
+`MArgument` — це тип, який керує списком таких аргументів. Під час ініціалізації `MArgument` кожен елемент повинен містити **лише один аргумент**.
 
 ```csharp
-// MArgument takes multiple individual arguments to create a list
+// MArgument приймає кілька окремих аргументів для створення списку
 var arguments = new MArgument(["--username", "${auth_player_name}", "-Dminecraft.launcher.brand=${launcher_name}"]);
 
 var result = arguments.InterpolateValues(new Dictionary<string, string?>
@@ -28,68 +28,68 @@ var result = arguments.InterpolateValues(new Dictionary<string, string?>
 // result: "--username", "hello1234", "-Dminecraft.launcher.brand=\"my launcher\""
 ```
 
-**Template Substitution**
+**Підстановка шаблонів**
 
-CmlLib automatically substitutes `${template}` parts with actual values by calling the `InterpolateValues` method. If the substituted value contains spaces, it automatically adds quotes, so no additional processing is needed.
+CmlLib автоматично замінює частини `${template}` актуальними значеннями шляхом виклику методу `InterpolateValues`. Якщо підставлене значення містить пробіли, він автоматично додає лапки, тому додаткова обробка не потрібна.
 
-The following templates are provided by default. To register more templates, set the `ArgumentDictionary` in the launch options. See [MLaunchOption.md](../getting-started/MLaunchOption.md)
+За замовчуванням надаються такі шаблони. Щоб зареєструвати більше шаблонів, встановіть `ArgumentDictionary` у параметрах запуску. Дивіться [MLaunchOption.md](../getting-started/MLaunchOption.md)
 
-| Template Key            | Description                                                                                                      |
-| ----------------------- | ------------------------------------------------------------------------------------------------------- |
-| `library_directory`     | `launchOption.Path.Library`                                                                             |
-| `natives_directory`     | `launchOption.NativesDirectory`                                                                         |
-| `launcher_name`         | `launchOption.GameLauncherName`                                                                         |
-| `launcher_version`      | `launchOption.GameLauncherVersion`                                                                      |
-| `classpath_separator`   | Path separator (e.g., `;` or `:`)                                                                               |
-| `classpath`             | `-cp`                                                                                                   |
-| `auth_player_name`      | Username (`launchOption.Session.Username`)                                                                 |
-| `version_name`          | Name of the version being launched                                                                                             |
-| `game_directory`        | Game directory path (`launchOption.Path.BasePath`)                                                               |
-| `assets_root`           | Assets directory path (`launchOption.Path.Assets`)                                                             |
-| `assets_index_name`     | Asset version name                                                                                                |
-| `auth_uuid`             | User UUID (`launchOption.Session.UUID`)                                                                   |
-| `auth_access_token`     | User access token (`launchOption.Session.AccessToken`)                                                           |
-| `user_properties`       | `launchOption.UserProperties`                                                                           |
-| `auth_xuid`             | User XUID (`launchOption.Session.Xuid`)                                                                   |
-| `clientid`              | `launchOption.ClientId`                                                                                 |
-| `user_type`             | User type, `Mojang` for pre-migration Mojang accounts, `msa` for post-migration Microsoft accounts (`launchOption.Session.UserType`) |
-| `game_assets`           | Legacy asset directory path (`launchOption.Path.GetAssetLegacyPath`)                                                  |
-| `auth_session`          | User access token (`launchOption.Session.AccessToken`)                                                           |
-| `version_type`          | `launchOption.VersionType`                                                                              |
-| `resolution_width`      | `launchOption.ScreenWidth`                                                                              |
-| `resolution_height`     | `launchOption.ScreenHeight`                                                                             |
-| `quickPlayPath`         | `launchOption.QuickPlayPath`                                                                            |
-| `quickPlaySingleplayer` | `launchOption.QuickPlaySingleplayer`                                                                    |
-| `quickPlayMultiplayer`  | `launchOption.ServerIp, launchOption.ServerPort`                                                        |
-| `quickPlayRealms`       | `launchOption.QuickPlayRealms`                                                                          |
+| Ключ шаблону | Опис |
+| --- | --- |
+| `library_directory` | `launchOption.Path.Library` |
+| `natives_directory` | `launchOption.NativesDirectory` |
+| `launcher_name` | `launchOption.GameLauncherName` |
+| `launcher_version` | `launchOption.GameLauncherVersion` |
+| `classpath_separator` | Роздільник шляхів (наприклад, `;` або `:`) |
+| `classpath` | `-cp` |
+| `auth_player_name` | Ім'я користувача (`launchOption.Session.Username`) |
+| `version_name` | Назва версії, що запускається |
+| `game_directory` | Шлях до директорії гри (`launchOption.Path.BasePath`) |
+| `assets_root` | Шлях до директорії асетів (`launchOption.Path.Assets`) |
+| `assets_index_name` | Назва версії асетів |
+| `auth_uuid` | UUID користувача (`launchOption.Session.UUID`) |
+| `auth_access_token` | Токен доступу користувача (`launchOption.Session.AccessToken`) |
+| `user_properties` | `launchOption.UserProperties` |
+| `auth_xuid` | XUID користувача (`launchOption.Session.Xuid`) |
+| `clientid` | `launchOption.ClientId` |
+| `user_type` | Тип користувача, `Mojang` для облікових записів Mojang (до міграції), `msa` для облікових записів Microsoft (після міграції) (`launchOption.Session.UserType`) |
+| `game_assets` | Шлях до застарілої директорії асетів (`launchOption.Path.GetAssetLegacyPath`) |
+| `auth_session` | Токен доступу користувача (`launchOption.Session.AccessToken`) |
+| `version_type` | `launchOption.VersionType` |
+| `resolution_width` | `launchOption.ScreenWidth` |
+| `resolution_height` | `launchOption.ScreenHeight` |
+| `quickPlayPath` | `launchOption.QuickPlayPath` |
+| `quickPlaySingleplayer` | `launchOption.QuickPlaySingleplayer` |
+| `quickPlayMultiplayer` | `launchOption.ServerIp, launchOption.ServerPort` |
+| `quickPlayRealms` | `launchOption.QuickPlayRealms` |
 
-**Conditional Arguments (Rules)**
+**Умовні аргументи (Rules)**
 
-`MArgument` can have `Rules` to activate arguments only in specific environments. For example, the `-XstartOnFirstThread` argument has `Rules` set to only be added on macOS.
+`MArgument` може мати правила (`Rules`) для активації аргументів лише у певних середовищах. Наприклад, аргумент `-XstartOnFirstThread` має налаштовані `Rules`, щоб додаватися лише на macOS.
 
-**Parsing Argument List from Single String**
+**Парсинг списку аргументів з одного рядка**
 
-`MArgument` must contain only one argument. If you input multiple arguments at once, it won't work properly.
+`MArgument` повинен містити лише один аргумент. Якщо ввести кілька аргументів одночасно, це працюватиме некоректно.
 
 ```csharp
-// Wrong usage!
+// Неправильне використання!
 var arguments = new MArgument("--username ${auth_player_name} -Dminecraft.launcher.brand=${launcher_name}");
 ```
 
-Simply splitting a string by space characters (`string.Split(' ')`) cannot properly handle spaces enclosed in quotes.
+Просте розділення рядка за допомогою пробілів (`string.Split(' ')`) не може належним чином обробити пробіли в лапках.
 
 ```csharp
-// Wrong method: using Split
+// Неправильний метод: використання Split
 var argumentsStr = "-Dos.name=\"Windows 10\" -version 1.0";
 var splitArgs = argumentsStr.Split(' ');
-// Wrong result: "-Dos.name=\"Windows", "10\"", "-version", "1.0"
+// Неправильний результат: "-Dos.name=\"Windows", "10\"", "-version", "1.0"
 ```
 
-In such cases, you should use the `FromCommandLine` method. This method parses strings according to command line rules and creates an `MArgument` object.
+У таких випадках слід використовувати метод `FromCommandLine`. Цей метод розбирає рядки відповідно до правил командного рядка та створює об'єкт `MArgument`.
 
 ```csharp
-// Correct method: using FromCommandLine
+// Правильний метод: використання FromCommandLine
 var argumentsStr = "-Dos.name=\"Windows 10\" --username \"hello 1234\"";
 var arguments = MArgument.FromCommandLine(argumentsStr);
-// Correct result: "-Dos.name=\"Windows 10\"", "--username", "hello 1234"
+// Правильний результат: "-Dos.name=\"Windows 10\"", "--username", "hello 1234"
 ```
