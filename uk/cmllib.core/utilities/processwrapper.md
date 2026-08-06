@@ -1,45 +1,45 @@
 # ProcessWrapper
 
-To check if the game launched successfully or terminated due to an error, you need to collect logs displayed in the process's standard output and check the exit code.
+Щоб перевірити, чи гра запустилася успішно, чи завершила роботу через помилку, вам потрібно збирати логи, що виводяться в стандартний вивід (standard output) процесу, та перевіряти код завершення (exit code).
 
-Implementing this with the .NET `System.Diagnostics.Process` class returned by the CmlLib launcher can make the code complex. The `ProcessWrapper` class is provided to simplify this process.
+Реалізація цього за допомогою стандартного класу .NET `System.Diagnostics.Process`, який повертає лаунчер CmlLib, може ускладнити код. Клас `ProcessWrapper` надається саме для того, щоб спростити цей процес.
 
-The core features of `ProcessWrapper` are:
+Основні можливості `ProcessWrapper`:
 
-* Standard output reading: Notifies when the process's standard output is available as events.
-* Exit code checking: Asynchronously waits for the process to terminate and returns the exit code.
+* Читання стандартного виводу: сповіщає через події (events), коли з'являються нові логи в стандартному виводі процесу.
+* Перевірка коду завершення: асинхронно очікує на завершення процесу та повертає код завершення.
 
-**Usage Example**
+**Приклад використання**
 
 ```csharp
-// 1. Create game process
-var process = launcher.BuildProcessAsync("1.20.4", new MLaunchOption());
+// 1. Створення процесу гри
+var process = await launcher.BuildProcessAsync("1.20.4", new MLaunchOption());
 
-// 2. Create ProcessWrapper
+// 2. Створення ProcessWrapper
 var processWrapper = new ProcessWrapper(process);
 
-// 3. Set up actions when logs are output
+// 3. Налаштування дій при отриманні логів
 processWrapper.OutputReceived += (sender, log) => 
 {
-    // (Example) Simply output logs to console as-is
+    // (Приклад) Просто виводимо логи в консоль "як є"
     Console.WriteLine(log);
 };
 
-// 4. Start the process
+// 4. Запуск процесу
 processWrapper.StartWithEvents();
 
-// 5. Wait for the process to terminate and check the exit code
+// 5. Очікування завершення процесу та перевірка коду завершення
 int exitCode = await processWrapper.WaitForExitTaskAsync();
 if (exitCode == 0)
 {
-    Console.WriteLine("Game terminated successfully.");
+    Console.WriteLine("Гра завершила роботу успішно.");
 }
 else
 {
-    Console.WriteLine($"Game error occurred! Exit code: {exitCode}");
+    Console.WriteLine($"Сталася помилка гри! Код завершення: {exitCode}");
 }
 ```
 
-## API Reference
+## Довідник API
 
 - [ProcessWrapper](https://cmllib.github.io/CmlLib.Core/api/CmlLib.Core.ProcessBuilder.ProcessWrapper.html)
