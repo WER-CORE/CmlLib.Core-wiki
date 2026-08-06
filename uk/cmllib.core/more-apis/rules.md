@@ -1,42 +1,41 @@
-# Rules
+# Правила
 
 ## RulesEvaluator
 
-The `IRulesEvaluator` interface evaluates the given rules to determine whether a file or parameter should be used. Some parameters or files are only applicable in specific OS versions or when certain features are enabled.
+Інтерфейс `IRulesEvaluator` оцінює задані правила, щоб визначити, чи слід використовувати той чи інший файл або параметр. Деякі параметри або файли застосовуються лише у певних версіях ОС або у разі ввімкнення відповідних функцій.
 
-### Examples
+### Приклади
 
-* **OS-specific files**: `lwjgl-windows` is only enabled on Windows.
-* **Feature-specific parameters**: The `--demo` parameter is only used if the `is_demo_user` feature is enabled.
+* **Файли для конкретних ОС**: `lwjgl-windows` вмикається лише на Windows.
+* **Параметри для конкретних функцій**: параметр `--demo` використовується лише тоді, коли ввімкнено функцію `is_demo_user`.
 
-Game versions provide a `rules` property to specify in which environments particular features should be enabled.
+Версії гри надають властивість `rules`, щоб вказати, у яких саме середовищах мають вмикатися ті чи інші функції.
 
-### Built-in Implementation
+### Вбудована реалізація
 
-The built-in implementation of `IRulesEvaluator`, named `RulesEvaluator`, behaves identically to the Mojang Launcher's implementation. In most cases, this implementation is sufficient.
+Вбудована реалізація `IRulesEvaluator` під назвою `RulesEvaluator` працює ідентично до реалізації у Mojang Launcher. У більшості випадків цієї реалізації цілком достатньо.
 
-If you need custom behavior, you can implement your own `IRulesEvaluator`. You can set your `IRulesEvaluator` in [MinecraftLauncherParameters](minecraftlauncherparameters.md).
+Якщо вам потрібна власна поведінка, ви можете реалізувати свій `IRulesEvaluator`. Встановити власний `IRulesEvaluator` можна у [MinecraftLauncherParameters](minecraftlauncherparameters.md).
 
 ## RulesEvaluatorContext
 
-`RulesEvaluatorContext` represents the current environment information for evaluating the given rules. This includes the OS type, version, architecture, and list of enabled features currently running.  
+`RulesEvaluatorContext` представляє інформацію про поточне середовище для оцінки заданих правил. Сюди входять тип ОС, версія, архітектура та список увімкнених на цей момент функцій.  
 
-The code below creates a `RulesEvaluatorContext` that represents the current environment.
+Наведений нижче код створює `RulesEvaluatorContext`, який представляє поточне середовище.
 
 ```csharp
 var context = new RulesEvaluatorContext(LauncherOSRule.Current, []);
 ```
 
-If you want to simulate running in a different environment, you can initialize the `RulesEvaluatorContext` by yourself.  
+Якщо ви хочете зімітувати запуск у іншому середовищі, ви можете ініціалізувати `RulesEvaluatorContext` самостійно.  
 
 ```csharp
 var context = new RulesEvaluatorContext(new LauncherOSRule("windows", "64", "10.0"), []);
 ```
 
-You can set the value of `RulesContext` for the launcher.
+Ви можете встановити значення `RulesContext` для лаунчера:
 
 ```csharp
 var launcher = new MinecraftLauncher();
 launcher.RulesContext = new RulesEvaluatorContext(new LauncherOSRule("windows", "64", "10.0"), []);
 ```
-
