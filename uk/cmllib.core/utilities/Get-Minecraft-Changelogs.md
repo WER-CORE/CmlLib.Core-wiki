@@ -1,40 +1,40 @@
 ---
-description: Get Minecraft changelogs
+description: Отримання списків змін Minecraft
 ---
 
-# Minecraft Changelogs
+# Списки змін Minecraft
 
 ![image](https://user-images.githubusercontent.com/17783561/82139750-20f0eb00-9865-11ea-8a41-c045ee123c09.png)
 
-## Sample code
+## Приклад коду
 
-See [ChangeLog.cs](https://github.com/CmlLib/CmlLib.Core/blob/master/examples/winform/ChangeLog.cs) in the CmlLibWinFormSample project.
+Дивіться [ChangeLog.cs](https://github.com/CmlLib/CmlLib.Core/blob/master/examples/winform/ChangeLog.cs) у проєкті CmlLibWinFormSample.
 
-## Example
+## Приклад
 
 ```csharp
-Changelogs changelogs = await Changelogs.GetChangelogs(); // get changelog informations
-string[] versions = changelogs.GetAvailableVersions(); // get all available versions
-string changelogHtml = await changelogs.GetChangelogHtml("1.16.5"); // get html of 1.16.5 changelog
+Changelogs changelogs = await Changelogs.GetChangelogs(); // отримання інформації про списки змін
+string[] versions = changelogs.GetAvailableVersions(); // отримання всіх доступних версій
+string changelogHtml = await changelogs.GetChangelogHtml("1.16.5"); // отримання HTML списку змін для 1.16.5
 ```
 
-## Methods
+## Методи
 
 ### static GetChangelogs()
 
-_Returns: `Task<Changelogs>`_
+_Повертає: `Task<Changelogs>`_
 
-Get changelog informations from mojang server.
+Отримує інформацію про списки змін із сервера Mojang.
 
 ### GetAvailableVersions()
 
-_Returns: `string[]`_
+_Повертає: `string[]`_
 
-Returns Minecraft versions which have a changelog.
+Повертає версії Minecraft, для яких доступний список змін.
 
 ### GetChangelogHtml(string version)
 
-_Returns: `Task<string>`_
+_Повертає: `Task<string>`_
 
-Returns the HTML code of the changelog of `version`.
-The HTML code contains only the changelog; there is no header or footer. You can display this HTML with the WebBrowser element if you'd like.
+Повертає HTML-код списку змін для вказаної `version`.
+HTML-код містить лише самий список змін, без шапки (header) чи нижньою частини (footer). За бажанням ви можете відобразити цей HTML за допомогою елемента WebBrowser.
