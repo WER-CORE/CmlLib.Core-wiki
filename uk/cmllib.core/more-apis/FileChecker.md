@@ -1,19 +1,19 @@
 ---
-description: Extract game files
+description: Видобування файлів гри
 ---
 
 # FileExtractor
 
-`IFileExtractor` extracts all `GameFile` from a given version.  
+`IFileExtractor` вилучає (витягує) всі `GameFile` із вказаної версії.  
 
-The library provides five built-in extractors:
+Бібліотека надає п'ять вбудованих екстракторів:
 
-* AssetFileExtractor: extract asset files (`<game_directory>/assets/objects`)
-* ClientFileExtractor: extract version.jar file (`<game_directory>/versions/<version>/<version>.jar`)
-* JavaFileExtractor: extract java files (`<game_directory>/runtime`)
-* LibraryFileExtractor: extract library files (`<game_directory>/libraries`)
-* LogFileExtractor: extract log config file (`<game_directory>/assets/log_configs`)
+* AssetFileExtractor: вилучає файли асетів (`<game_directory>/assets/objects`)
+* ClientFileExtractor: вилучає файл version.jar (`<game_directory>/versions/<version>/<version>.jar`)
+* JavaFileExtractor: вилучає файли Java (`<game_directory>/runtime`)
+* LibraryFileExtractor: вилучає файли бібліотек (`<game_directory>/libraries`)
+* LogFileExtractor: вилучає конфігураційний файл логів (`<game_directory>/assets/log_configs`)
 
-Any `GameFile` generated here is passed to [GameInstaller](Downloader.md), which would download a file if the file does not exist or its checksum is not equal.
+Будь-який згенерований тут `GameFile` передається до [GameInstaller](Downloader.md), який завантажує файл, якщо той відсутній або його контрольна сума (checksum) не збігається.
 
-Implement the `IFileExtractor` interface and add it to the launcher if you want the launcher to check and download more files (e.g. mod files). See [MinecraftLauncherParameters](minecraftlauncherparameters.md)
+Реалізуйте інтерфейс `IFileExtractor` та додайте його до лаунчера, якщо ви хочете, щоб лаунчер перевіряв і завантажував додаткові файли (наприклад, файли модів). Дивіться [MinecraftLauncherParameters](minecraftlauncherparameters.md).
