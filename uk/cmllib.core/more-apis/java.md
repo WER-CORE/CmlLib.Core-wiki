@@ -2,20 +2,20 @@
 
 ### IJavaPathResolver
 
-`IJavaPathResolver` returns a list of installed Java versions and returns the path to the binary file for the given Java version.
+`IJavaPathResolver` повертає список встановлених версій Java та повертає шлях до бінарного файлу для вказаної версії Java.
 
-The built-in `IJavaPathResolver` implementation, `MinecraftJavaPathResolver`, manages the Java versions within the `MinecraftPath.Runtime` directory.
+Вбудована реалізація `IJavaPathResolver` під назвою `MinecraftJavaPathResolver` керує версіями Java у директорії `MinecraftPath.Runtime`.
 
-You can set the `IJavaPathResolver` in [MinecraftLauncherParameters](minecraftlauncherparameters.md)
+Встановити `IJavaPathResolver` можна у [MinecraftLauncherParameters](minecraftlauncherparameters.md).
 
 ### JavaFileExtractor
 
-The library installs the Java provided by Mojang, so you don't need to have Java pre-installed on the user's PC. See `JavaFileExtractor` in [FileExtractor](FileChecker.md).
+Бібліотека встановлює Java, надану Mojang, тому вам не потрібно мати заздалегідь встановлену Java на ПК користувача. Дивіться `JavaFileExtractor` у [FileExtractor](FileChecker.md).
 
-!!! info "Platform Support"
-    `JavaFileExtractor` does not support all platforms. On unsupported platform you should specify Java binary path yourself. See `JavaPath` in [Launch Options](../getting-started/MLaunchOption.md).
+!!! info "Підтримка платформ"
+    `JavaFileExtractor` підтримує не всі платформи. На непідтримуваній платформі вам слід вказати шлях до бінарного файлу Java самостійно. Дивіться `JavaPath` у [Параметрах запуску](../getting-started/MLaunchOption.md).
 
-    Supported platform:
+    Підтримувані платформи:
 
     * windows-x64
     * windows-x86
@@ -24,4 +24,3 @@ The library installs the Java provided by Mojang, so you don't need to have Java
     * linux-i386 (x86)
     * mac-os (x64)
     * mac-os-arm64
-
