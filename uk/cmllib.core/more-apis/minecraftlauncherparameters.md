@@ -1,43 +1,43 @@
 # MinecraftLauncherParameters
 
-You can change the default behavior of the launcher.
+Ви можете змінити стандартну поведінку лаунчера.
 
-### Example
+### Приклад
 
 ```csharp
 var path = new MinecraftPath();
 var parameters = MinecraftLauncherParameters.CreateDefault(path);
 
-// set default RulesEvaluator
+// встановлення стандартного RulesEvaluator
 parameters.RulesEvaluator = new RulesEvaluator();
 
-// load only the locally installed version 
+// завантажувати лише локально встановлені версії 
 parameters.VersionLoader = new LocalJsonVersionLoader(path);
 
-// set default JavaPathResolver
+// встановлення стандартного JavaPathResolver
 parameters.JavaPathResolver = new MinecraftJavaPathResolver(path);
 
-// use single-threaded game installer
+// використання однопотокового інсталятора гри
 parameters.GameInstaller = new BasicGameInstaller(parameters.HttpClient);
 
-// modify default file extractors
+// модифікація стандартних екстракторів файлів
 var extractors = DefaultFileExtractors.CreateDefault(
     parameters.HttpClient, 
     parameters.RulesEvaluator!, 
     parameters.JavaPathResolver!);
-extractors.Asset!.AssetServer = MojangServer.ResourceDownload; // set asset download server
-extractors.Library!.LibraryServer = MojangServer.Library; // set library download server
-extractors.Java = null; // remove JavaFileExtractor
-extractors.ExtraExtractors = []; // add additional file extractor
+extractors.Asset!.AssetServer = MojangServer.ResourceDownload; // встановлення сервера завантаження асетів
+extractors.Library!.LibraryServer = MojangServer.Library; // встановлення сервера завантаження бібліотек
+extractors.Java = null; // видалення JavaFileExtractor
+extractors.ExtraExtractors = []; // додавання додаткового екстрактора файлів
 parameters.FileExtractors = extractors.ToExtractorCollection();
 
-// initialize a new launcher with parameters
+// ініціалізація нового лаунчера з налаштованими параметрами
 var launcher = new MinecraftLauncher(parameters);
 ```
 
 ### MinecraftPath
 
-See [Minecraft Path](../getting-started/MinecraftPath.md)
+Дивіться [Minecraft Path](../getting-started/MinecraftPath.md)
 
 ```csharp
 var path = new MinecraftPath();
@@ -46,7 +46,7 @@ var parameters = MinecraftLauncherParameters.CreateDefault(path);
 
 ### HttpClient
 
-All HTTP requests use this HttpClient. You can use [Polly](https://github.com/App-vNext/Polly) for features like automatic retries on failed requests and failed downloads.
+Усі HTTP-запити використовують цей HttpClient. Ви можете використовувати бібліотеку [Polly](https://github.com/App-vNext/Polly) для реалізації таких функцій, як автоматичні повторні спроби у разі невдалих запитів чи завантажень.
 
 ```csharp
 var path = new MinecraftPath();
@@ -56,7 +56,7 @@ var parameters = MinecraftLauncherParameters.CreateDefault(path, httpClient);
 
 ### RulesEvaluator
 
-See [Rules](rules.md)
+Дивіться [Правила](rules.md)
 
 ```csharp
 parameters.RulesEvaluator = new RulesEvaluator();
@@ -64,7 +64,7 @@ parameters.RulesEvaluator = new RulesEvaluator();
 
 ### VersionLoader
 
-See [Versions](../getting-started/versions.md)
+Дивіться [Версії](../getting-started/versions.md)
 
 ```csharp
 parameters.VersionLoader = new MojangJsonVersionLoaderV2(path, httpClient);
@@ -72,7 +72,7 @@ parameters.VersionLoader = new MojangJsonVersionLoaderV2(path, httpClient);
 
 ### JavaPathResolver
 
-See [Java](java.md)
+Дивіться [Java](java.md)
 
 ```csharp
 parameters.JavaPathResolver = new MinecraftJavaPathResolver(path);
@@ -80,7 +80,7 @@ parameters.JavaPathResolver = new MinecraftJavaPathResolver(path);
 
 ### GameInstaller
 
-See [GameInstaller](Downloader.md)
+Дивіться [GameInstaller](Downloader.md)
 
 ```csharp
 parameters.GameInstaller = ParallelGameInstaller.CreateAsCoreCount(httpClient);
@@ -88,7 +88,7 @@ parameters.GameInstaller = ParallelGameInstaller.CreateAsCoreCount(httpClient);
 
 ### FileExtractors
 
-See [FileExtractor](FileChecker.md)
+Дивіться [FileExtractor](FileChecker.md)
 
 ```csharp
 var extractors = DefaultFileExtractors.CreateDefault(
