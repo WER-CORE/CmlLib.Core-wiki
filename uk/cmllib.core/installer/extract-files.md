@@ -1,23 +1,23 @@
 ---
-description: Mod Loader File Extraction
+description: Екстракція файлів завантажувача модів
 ---
 
-# Mod Loader File Extraction
+# Екстракція файлів завантажувача модів
 
-You can extract files from any type of client including Forge, Fabric, and automate installation.
+Ви можете витягти файли з будь-якого типу клієнта, включаючи Forge та Fabric, і автоматизувати їхнє встановлення.
 
-!!! danger "Copyright Warning"
-    **Extracted files may contain copyrighted content. Distributing these files may violate Minecraft EULA or related laws. Please verify before distribution.**
+!!! danger "Попередження про авторське право"
+    **Витягнуті файли можуть містити контент, захищений авторським правом. Розповсюдження цих файлів може порушувати EULA Minecraft або відповідні закони. Будь ласка, перевірте це перед розповсюдженням.**
 
-## Extraction Method
+## Метод витягування
 
-1. Delete `.minecraft` directory
-2. Launch vanilla version of the version you want to extract using Mojang launcher and exit (e.g., to extract 1.7.10 forge, first run vanilla 1.7.10)
-3. Install the mod loader in `.minecraft`
-4. Launch the installed mod loader using Mojang launcher and exit
-5. Copy `libraries` directory and `versions/<version name>` directory from `.minecraft`. These two directories are the extracted files.
+1. Видаліть директорію `.minecraft`
+2. Запустіть ванільну версію гри, файли якої ви хочете витягти, за допомогою Mojang launcher і закрийте її (наприклад, щоб витягти Forge для 1.7.10, спочатку запустіть ванільну 1.7.10)
+3. Встановіть завантажувач модів у `.minecraft`
+4. Запустіть встановлений завантажувач модів через Mojang launcher і закрийте його
+5. Скопіюйте директорію `libraries` та директорію `versions/<назва версії>` з `.minecraft`. Ці дві директорії і є витягнутими файлами.
 
-Example: 1.21.4-forge-54.1.0
+Приклад: 1.21.4-forge-54.1.0
 
 ```
 /
@@ -30,24 +30,24 @@ Example: 1.21.4-forge-54.1.0
         └── 1.21.4-forge-54.1.0.json
 ```
 
-!!! danger "JAR File Warning"
-    If `versions/<version name>/<version name>.jar` file exists, **please verify before distribution!**
+!!! danger "Попередження щодо файлів JAR"
+    Якщо файл `versions/<назва версії>/<назва версії>.jar` існує, **будь ласка, перевірте його перед розповсюдженням!**
 
-    * In most cases, CmlLib will install this file from Mojang's official distribution server even if it's missing.
-    * If distribution is necessary, **verify that you are not violating Minecraft EULA or copyright laws.**
+    * У більшості випадків CmlLib завантажить цей файл з офіційного сервера розповсюдження Mojang, навіть якщо він відсутній.
+    * Якщо розповсюдження є необхідним, **переконайтеся, що ви не порушуєте EULA Minecraft або закони про авторське право.**
 
-## Distribution and Installation
+## Розповсюдження та встановлення
 
-Distribute the extracted files with your launcher. There are several distribution methods:
+Розповсюджуйте витягнуті файли разом із вашим лаунчером. Існує кілька способів розповсюдження:
 
-* Upload extracted files to your own file server
-* Embed extracted files into launcher executable using EmbeddedResource
+* Завантажити витягнуті файли на власний файловий сервер
+* Вбудувати витягнуті файли у виконуваний файл лаунчера за допомогою EmbeddedResource
 
-Implement code to copy or download distributed files to the game directory for installation.
+Реалізуйте код для копіювання або завантаження розповсюджуваних файлів у директорію гри для їх встановлення.
 
-## Launching
+## Запуск
 
-After loading versions, the installed version names will be displayed. Launch the game using the version name. See [Minecraft Launcher](../getting-started/MinecraftLauncher.md)
+Після завантаження версій відобразяться назви встановлених версій. Запустіть гру, використовуючи назву версії. Дивіться [Minecraft Launcher](../getting-started/MinecraftLauncher.md).
 
 ```csharp
 var versions = await launcher.GetAllVersionsAsync();
@@ -56,7 +56,7 @@ foreach (var v in versions)
     Console.WriteLine(v.Name);
 }
 
-// Example: when installed version is 1.21.4-forge-54.1.0
+// Приклад: коли встановлено версію 1.21.4-forge-54.1.0
 
 await launcher.InstallAsync("1.21.4-forge-54.1.0");
 var process = await launcher.BuildProcessAsync("1.21.4-forge-54.1.0", new MLaunchOption
@@ -67,4 +67,4 @@ var process = await launcher.BuildProcessAsync("1.21.4-forge-54.1.0", new MLaunc
 process.Start();
 ```
 
-Since extracted files are usually incomplete, always call `InstallAsync` to ensure all missing files are installed.
+Оскільки витягнуті файли зазвичай є неповними, завжди викликайте `InstallAsync`, щоб переконатися, що всі відсутні файли встановлені.
