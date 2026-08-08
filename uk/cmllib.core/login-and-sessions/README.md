@@ -1,14 +1,14 @@
-# Login and Sessions
+# Вхід та сесії
 
-To connect to online-mode server, you should obtain player's session data. The game session data contains player's username, UUID, and accessToken.
+Щоб підключитися до сервера в онлайновому режимі (online-mode), вам потрібно отримати дані сесії гравця. Дані ігрової сесії містять ім'я користувача (username), UUID та accessToken гравця.
 
-There are some ways to obtain game session:
+Існує кілька способів отримати ігрову сесію:
 
-* [Microsoft Xbox Account](Microsoft-Xbox-Live-Login.md)
-* [Offline Account](offline-account.md)
+* [Обліковий запис Microsoft Xbox](Microsoft-Xbox-Live-Login.md)
+* [Офлайн обліковий запис](offline-account.md)
 
-After obtaining a session data, you should set the `MLaunchOption.Session` property to an `MSession` instance. [Launch Options](../getting-started/MLaunchOption.md)
+Після отримання даних сесії вам слід встановити властивість `MLaunchOption.Session` в екземпляр `MSession`. [Параметри запуску](../getting-started/MLaunchOption.md)
 
-# API Reference
+# Довідник API
 
 - [MSession](https://cmllib.github.io/CmlLib.Core.Commons/api/CmlLib.Core.Auth.MSession.html)
