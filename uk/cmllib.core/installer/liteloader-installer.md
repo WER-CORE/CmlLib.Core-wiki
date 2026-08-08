@@ -1,10 +1,10 @@
 ---
-description: Install LiteLoader
+description: Встановлення LiteLoader
 ---
 
-# LiteLoader Installer
+# Інсталятор LiteLoader
 
-## Get all versions
+## Отримання всіх версій
 
 ```csharp
 var liteLoaderInstaller = new LiteLoaderInstaller(new HttpClient());
@@ -16,7 +16,7 @@ foreach (var loader in loaders)
 }
 ```
 
-### Install (1.7.10)
+### Встановлення (1.7.10)
 
 ```csharp
 var path = new MinecraftPath();
