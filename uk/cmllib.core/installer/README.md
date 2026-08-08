@@ -1,26 +1,25 @@
-# Mod Loader Installers
+# Інсталятори завантажувачів модів
 
-Automatically install mod loaders like Forge, Fabric without requiring users to manually install them.
+Автоматичне встановлення завантажувачів модів (mod loaders), таких як Forge чи Fabric, без потреби ручного встановлення користувачами.
 
-## Automatic Mod Loader Installation
+## Автоматичне встановлення завантажувачів модів
 
-* Forge: [Installer.Forge](../../installer.forge/README.md)
-* Fabric: [Fabric Installer](fabric-installer.md)
-* Quilt: [Quilt Installer](quilt-installer.md)
-* LiteLoader: [LiteLoader Installer](liteloader-installer.md)
+* Forge: [Інсталятор Forge](../../installer.forge/README.md)
+* Fabric: [Інсталятор Fabric](fabric-installer.md)
+* Quilt: [Інсталятор Quilt](quilt-installer.md)
+* LiteLoader: [Інсталятор LiteLoader](liteloader-installer.md)
 
-## Community Projects
+## Проєкти спільноти
 
-Thanks to community contributions, there are installers that can be used with CmlLib.Core. These libraries are not official projects managed by CmlLib.
+Завдяки внеску спільноти існують інсталятори, які можна використовувати з CmlLib.Core. Ці бібліотеки не є офіційними проєктами під управлінням CmlLib.
 
 * Optifine: [mzggr0914/Optifine.Installer](https://github.com/mzggr0914/Optifine.Installer)
 * NeoForge: [CmlLib.Core.Installer.NeoForge](../../installer.neoforge/README.md)
 
-## Direct Mod Loader Extraction
+## Пряме вилучення файлів завантажувача модів
 
-If the mod loader you want to install is not in the above list or if there are unsupported versions, you can extract files directly and install them.
+Якщо завантажувач модів, який ви хочете встановити, відсутній у списку вище, або якщо певні версії не підтримуються, ви можете вилучити файли напряму та встановити їх.
 
-See [Mod Loader File Extraction](extract-files.md)
+Дивіться [Вилучення файлів завантажувача модів](extract-files.md).
 
-Distribute the extracted files with your launcher. A commonly used method is to upload extracted files to your own file server, and have the launcher download files from the server and copy them to the appropriate path.
-
+Поширюйте вилучені файли разом із вашим лаунчером. Поширеним методом є завантаження вилучених файлів на власний файловий сервер, щоб лаунчер завантажував їх звідти та копіював за відповідним шляхом.
