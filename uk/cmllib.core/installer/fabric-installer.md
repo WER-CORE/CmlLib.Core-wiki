@@ -1,10 +1,10 @@
 ---
-description: Install Fabric mod loader
+description: Встановлення завантажувача модів Fabric
 ---
 
-# Fabric Installer
+# Інсталятор Fabric
 
-### Get Minecraft versions
+### Отримання версій Minecraft
 
 ```csharp
 var fabricInstaller = new FabricInstaller(new HttpClient());
@@ -16,7 +16,7 @@ foreach (var version in versions)
 }
 ```
 
-### Get Fabric versions
+### Отримання версій Fabric
 
 ```csharp
 var fabricInstaller = new FabricInstaller(new HttpClient());
@@ -28,7 +28,7 @@ foreach (var version in versions)
 }
 ```
 
-### Install
+### Встановлення
 
 ```csharp
 var path = new MinecraftPath();
@@ -36,9 +36,9 @@ var launcher = new MinecraftLauncher(path);
 
 var fabricInstaller = new FabricInstaller(new HttpClient());
 
-// install the latest fabric loader for 1.20.4
+// встановлення найновішої версії Fabric Loader для 1.20.4
 var versionName = await fabricInstaller.Install("1.20.4", path);
 
-// install the specific fabric loader
+// встановлення конкретної версії Fabric Loader
 var versionName = await fabricInstaller.Install("1.20.4", "0.16.0", path);
 ```
