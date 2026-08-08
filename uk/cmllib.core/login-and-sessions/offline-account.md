@@ -1,8 +1,8 @@
-# Offline Account
+# Офлайн обліковий запис
 
-## Offline Login
+## Офлайн-вхід
 
-This session cannot be used in online-mode server or realm.
+Цю сесію не можна використовувати на серверах у режимі онлайн (online-mode) або в Realms.
 
 ```csharp
 using CmlLib.Core.Auth;
@@ -10,7 +10,7 @@ using CmlLib.Core.Auth;
 MSession session = MSession.CreateOfflineSession("username");
 ```
 
-## Creating your own session data
+## Створення власних даних сесії
 
 ```csharp
 using CmlLib.Core.Auth;
