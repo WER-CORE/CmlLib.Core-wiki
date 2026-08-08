@@ -1,12 +1,12 @@
-# Microsoft Xbox Account
+# Обліковий запис Microsoft Xbox
 
 ## [CmlLib.Core.Auth.Microsoft](../../auth.microsoft/cmllib.core.auth.microsoft/README.md)
 
-Microsoft login process is quite complex. Therefore, this functionality is provided as a separate library. Use this library.
+Процес авторизації Microsoft є досить складним. Тому цей функціонал надається у вигляді окремої бібліотеки. Використовуйте цю бібліотеку.
 
 [CmlLib.Core.Auth.Microsoft](../../auth.microsoft/cmllib.core.auth.microsoft/README.md)
 
-### **Example**
+### **Приклад**
 
 ```csharp
 using CmlLib.Core;
