@@ -1,10 +1,10 @@
 ---
-description: Install Quilt mod loader
+description: Встановлення завантажувача модів Quilt
 ---
 
-# Quilt Installer
+# Інсталятор Quilt
 
-## Get Minecraft versions
+## Отримання версій Minecraft
 
 ```csharp
 var quiltInstaller = new QuiltInstaller(new HttpClient());
@@ -16,7 +16,7 @@ foreach (var version in versions)
 }
 ```
 
-### Get Quilt versions
+### Отримання версій Quilt
 
 ```csharp
 var quiltInstaller = new QuiltInstaller(new HttpClient());
@@ -28,7 +28,7 @@ foreach (var version in versions)
 }
 ```
 
-### Installation
+### Встановлення
 
 ```csharp
 var path = new MinecraftPath();
@@ -36,9 +36,9 @@ var launcher = new MinecraftLauncher(path);
 
 var quiltInstaller = new QuiltInstaller(new HttpClient());
 
-// install the latest quilt loader for 1.20.4
+// встановлення найновішої версії Quilt Loader для 1.20.4
 var versionName = await quiltInstaller.Install("1.20.4", path);
 
-// install the specific quilt loader
+// встановлення конкретної версії Quilt Loader
 var versionName = await quiltInstaller.Install("1.20.4", "0.16.0", path);
 ```
