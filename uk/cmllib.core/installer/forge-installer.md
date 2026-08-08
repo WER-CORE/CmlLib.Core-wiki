@@ -1,5 +1,5 @@
-# Forge Installer
+# Інсталятор Forge
 
-Use the [Installer.Forge](../../installer.forge/README.md) library.
+Використовуйте бібліотеку [Installer.Forge](../../installer.forge/README.md).
 
-To extract files directly, see [Mod Loader File Extraction](../installer/extract-files.md).
+Щоб вилучити файли напряму, дивіться [Вилучення файлів завантажувача модів](../installer/extract-files.md).
