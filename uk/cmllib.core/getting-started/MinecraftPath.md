@@ -1,17 +1,17 @@
 ---
-description: Represents minecraft directory path and structure.
+description: Представляє шлях та структуру директорії Minecraft.
 ---
 
-# Minecraft Path
+# MinecraftPath
 
-You can customize Minecraft game directory path and structure where all game files is stored.
+Ви можете налаштувати шлях та структуру директорії гри Minecraft, де зберігаються всі ігрові файли.
 
-## Example
+## Приклад
 
-Initialize `MinecraftLauncher` with custom Minecraft path and default directory structure.
+Ініціалізація `MinecraftLauncher` із власним шляхом Minecraft та стандартною структурою директорій.
 
 ```csharp
-// initialize launcher with the specific path
+// ініціалізація лаунчера зі вказаним шляхом
 MinecraftPath myPath = new MinecraftPath("./games");
 MinecraftLauncher launcher = new MinecraftLauncher(myPath);
 
@@ -23,17 +23,17 @@ MinecraftLauncher launcher = new MinecraftLauncher(myPath);
 // myPath.GetIndexFilePath("1.16.5") : ./games/assets/indexes/1.16.5.json
 ```
 
-## Default directory path
+## Стандартний шлях директорії
 
-You can get default game directory path using `MinecraftPath.GetOSDefaultPath()`, or create new instance of `MinecraftPath` without any arguments.
+Ви можете отримати стандартний шлях директорії гри за допомогою `MinecraftPath.GetOSDefaultPath()` або створивши новий екземпляр `MinecraftPath` без аргументів.
 
-Default Minecraft path is:
+Стандартний шлях Minecraft:
 
 * Windows: `%appdata%\.minecraft`
 * Linux: `$HOME/.minecraft`
 * macOS: `$HOME/Library/Application Support/minecraft`
 
-## Default directory structure
+## Стандартна структура директорії
 
 ```
 / (MinecraftPath.BasePath)
@@ -53,16 +53,16 @@ Default Minecraft path is:
         └── natives/ (MinecraftPath.GetNativePath("version_name"))
 ```
 
-## Make custom directory structure
+## Створення власної структури директорії
 
-There are two ways to make custom directory structure.
+Існує два способи створити власну структуру директорії.
 
-### Set properties
+### Налаштування властивостей
 
-Set path properties to what you want. See [API Reference](#api-references) for more information.
+Встановіть значення властивостей шляхів відповідно до ваших потреб. Для отримання додаткової інформації дивіться [Довідник API](#довідник-api).
 
-!!! info "Information"
-    Make sure to use absolute paths only.
+!!! info "Інформація"
+    Переконайтеся, що використовуєте лише абсолютні шляхи.
 
 ```csharp
 MinecraftPath myPath = new MinecraftPath();
@@ -71,12 +71,12 @@ myPath.Versions = myPath.BasePath + "/commons/versions";
 myPath.Assets = MinecraftPath.GetOSDefaultPath() + "/assets";
 ```
 
-### Inheritence
+### Успадкування
 
-!!! info "Information"
-    When receiving a relative path as an argument, make sure to convert it to an absolute path and store it.
+!!! info "Інформація"
+    Отримуючи відносний шлях як аргумент, переконайтеся, що ви перетворюєте його на абсолютний шлях перед збереженням.
 
-Create derived class of `MinecraftPath`, and override methods. Each methods (`CreateDirs`, `NormalizePath`, etc) are described in [API Reference](#api-references).
+Створіть похідний клас від `MinecraftPath` та перевизначте його методи. Кожен із методів (`CreateDirs`, `NormalizePath` тощо) описано у [Довіднику API](#довідник-api).
 
 ```csharp
 class MyMinecraftPath : MinecraftPath
@@ -104,24 +104,24 @@ class MyMinecraftPath : MinecraftPath
     public override string GetNativePath(string id)
         => NormalizePath($"{Versions}/{id}/natives");
     
-    // NOTE: Minecraft may not recognize the changed path
+    // ПРИМІТКА: Minecraft може не розпізнати змінений шлях
     public override string GetIndexFilePath(string assetId)
         => NormalizePath($"{Assets}/indexes/{assetId}.json");
 
-    // NOTE: Minecraft may not recognize the changed path
+    // ПРИМІТКА: Minecraft може не розпізнати змінений шлях
     public override string GetAssetObjectPath(string assetId)
         => NormalizePath($"{Assets}/objects");
 
-    // NOTE: Minecraft may not recognize the changed path
+    // ПРИМІТКА: Minecraft може не розпізнати змінений шлях
     public override string GetAssetLegacyPath(string assetId)
         => NormalizePath($"{Assets}/virtual/legacy");
 
-    // NOTE: Minecraft may not recognize the changed path
+    // ПРИМІТКА: Minecraft може не розпізнати змінений шлях
     public override string GetLogConfigFilePath(string configId)
         => NormalizePath($"{Assets}/log_configs/{configId}" + (!configId.EndsWith(".xml") ? ".xml" : ""));
 }
 ```
 
-# API Reference
+# Довідник API
 
 - [MinecraftPath](https://cmllib.github.io/CmlLib.Core.Commons/api/CmlLib.Core.MinecraftPath.html)
